@@ -1,3 +1,4 @@
+//Defining the Variables for score, team score, and wickets
 const $ball = document.getElementsByClassName('ball');
 const $team1score = document.getElementById('score-team1');
 const $team1wickets = document.getElementById('wickets-team1');
@@ -13,8 +14,11 @@ var team2wickets = 0;
 var turn = 1;
 var balls_faced = 0;
 
+//Total possible outcomes for a ball
 const possibilities = [0,1,2,3,4,5,6,'W'];
 
+
+//Function to define result of the game
 function finished(){
     if(team1score>team2score){
         alert("India Wins")
@@ -26,10 +30,10 @@ function finished(){
         alert("Draw!")
     }
 }
-
+//Strike Button
 strikebutton.onclick=()=>{
     balls_faced++
-    
+    //For Team-1
     if(turn === 1){        
         var score = possibilities[Math.floor(Math.random() * possibilities.length)];
         if(score === "W"){
@@ -50,7 +54,7 @@ strikebutton.onclick=()=>{
             balls_faced =0;
             
         }
-    }
+    }//For Team-2
     else if(turn === 2){
         var score = possibilities[Math.floor(Math.random() * possibilities.length)];
         if(score === "W"){
@@ -74,6 +78,7 @@ strikebutton.onclick=()=>{
         
     }
 }
+//Reset button
 resetbutton.onclick = () => {
     window.location.reload();
   };
