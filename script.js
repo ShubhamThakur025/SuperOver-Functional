@@ -1,4 +1,4 @@
-//Defining the Variables for score, team score, and wickets
+//Defining Variables
 const $ball = document.getElementsByClassName('ball');
 const $team1score = document.getElementById('score-team1');
 const $team1wickets = document.getElementById('wickets-team1');
@@ -6,6 +6,8 @@ const $team2score = document.getElementById('score-team2');
 const $team2wickets = document.getElementById('wickets-team2');
 const resetbutton = document.getElementById('reset');
 const strikebutton = document.getElementById('strike');
+const strike = new Audio("https://i1.faceprep.in/prograd-junior/bat%2Bhit%2Bball.mp3");
+const cheers = new Audio("https://i1.faceprep.in/prograd-junior/Ball%2BHit%2BCheer.mp3");
 
 var team1score = 0;
 var team2score = 0;
@@ -14,12 +16,12 @@ var team2wickets = 0;
 var turn = 1;
 var balls_faced = 0;
 
-//Total possible outcomes for a ball
+//Possible outcomes for each ball
 const possibilities = [0,1,2,3,4,5,6,'W'];
 
-
-//Function to define result of the game
 function finished(){
+    //Audio for finished game
+    cheers.play()
     if(team1score>team2score){
         alert("India Wins")
     }
@@ -29,12 +31,15 @@ function finished(){
     else{
         alert("Draw!")
     }
+
 }
 //Strike Button
 strikebutton.onclick=()=>{
-    balls_faced++
-    //For Team-1
-    if(turn === 1){        
+    //Audio for start of the game
+    strike.play();
+    balls_faced++    
+    if(turn === 1){
+        //
         var score = possibilities[Math.floor(Math.random() * possibilities.length)];
         if(score === "W"){
             team1wickets++;
@@ -54,7 +59,7 @@ strikebutton.onclick=()=>{
             balls_faced =0;
             
         }
-    }//For Team-2
+    }
     else if(turn === 2){
         var score = possibilities[Math.floor(Math.random() * possibilities.length)];
         if(score === "W"){
